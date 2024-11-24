@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { fetchAttendance } from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
     const [attendanceRecords, setAttendanceRecords] = useState([]);
     const [error, setError] = useState("");
+    const navigate = useNavigate();
 
     useEffect(() => {
         const loadAttendance = async () => {
@@ -20,6 +22,11 @@ const Dashboard = () => {
 
     return (
         <div className="container mt-4">
+            <div>
+                <button onClick={() => navigate("/students")}>View Students</button>
+                <button onClick={() => navigate("/teachers")}>View Teachers</button>
+            </div>
+
             <h1>Dashboard</h1>
             {error && <p className="text-danger">{error}</p>}
             <table className="table table-striped mt-4">
